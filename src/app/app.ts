@@ -1,13 +1,15 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TaskInterface } from '../type';
+import { TaskInterface, TaskModalType } from '../type';
 import { TaskGroup } from './task-group/task-group';
+import { TaskEditModal } from './task-edit-modal/task-edit-modal';
 
 @Component({
   selector: 'app-root',
   imports: [
     RouterOutlet,
-    TaskGroup
+    TaskGroup,
+    TaskEditModal,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
@@ -27,4 +29,23 @@ export class App {
   doneList: TaskInterface[] = [
     { "title": "finished task 1", "description": "finished task 1 description", },
   ];
+
+  showModal = false;
+  mode: TaskModalType = "new";
+  currTaskTitle = "";
+  currTaskDescription = "";
+
+  closeModal() {
+    this.showModal = false;
+  }
+  showNewTaskModal() {
+    this.showModal = true;
+    this.mode = "new";
+  }
+  showEditTaskModal(task: TaskInterface) {
+    this.showModal = true;
+    this.mode = "edit";
+    this.currTaskTitle = task.title;
+    this.currTaskDescription = task.description;
+  }
 }

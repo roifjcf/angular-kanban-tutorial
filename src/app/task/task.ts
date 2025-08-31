@@ -1,6 +1,6 @@
 /** Component for a task */
 
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { TaskInterface } from '../../type';
 
 @Component({
@@ -11,4 +11,11 @@ import { TaskInterface } from '../../type';
 })
 export class Task {
   task = input<TaskInterface>();
+  showEditTaskModalEvent = output<TaskInterface>();
+  showEditTaskModal() {
+    this.showEditTaskModalEvent.emit({
+      title: this.task()?.title ?? "",
+      description: this.task()?.description ?? "",
+    });
+  }
 }

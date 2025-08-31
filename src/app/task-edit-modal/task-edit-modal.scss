@@ -1,0 +1,22 @@
+.taskeditmodal-container {
+  padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+
+  position: fixed;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%,-50%);
+
+  border: 1px solid black;
+  border-radius: 4px;
+
+  
+
+  .button-group {
+    display: flex;
+    flex-direction: row;
+  }
+
+}

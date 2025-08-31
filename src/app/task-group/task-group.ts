@@ -1,5 +1,5 @@
 /** Component for a group of tasks */
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { TaskInterface } from '../../type';
 import { Task } from '../task/task';
 
@@ -11,4 +11,8 @@ import { Task } from '../task/task';
 })
 export class TaskGroup {
   taskList = input<TaskInterface[]>([]);
+  showEditTaskModalEvent = output<TaskInterface>();
+  showEditTaskModal(task: TaskInterface) {
+    this.showEditTaskModalEvent.emit(task);
+  }
 }
