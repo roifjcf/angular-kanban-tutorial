@@ -1,0 +1,5 @@
+<div class="taskgroup-container">
+  @for (task of taskList(); track task) {
+    <app-task [task]="task" />
+  }
+</div>

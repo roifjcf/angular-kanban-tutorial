@@ -1,2 +1,22 @@
+<nav>
+  <p>Angular kanban tutorial</p>
+</nav>
+
+<main>
+  <div class="app-task-groups">
+    <div>
+      <h2>Todo</h2>
+      <app-task-group [taskList]="todoList" />
+    </div>
+    <div>
+      <h2>In Progress</h2>
+      <app-task-group [taskList]="inProgressList" />
+    </div>
+    <div>
+      <h2>Done</h2>
+      <app-task-group [taskList]="doneList" />
+    </div>
+  </div>
+</main>
 
 <router-outlet />
