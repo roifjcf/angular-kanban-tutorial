@@ -36,6 +36,9 @@
       [mode]="mode"
       [currTask]="{title: currTaskTitle, description: currTaskDescription}"
       (closeModalEvent)="closeModal()"
+      (addNewTaskEvent)="addNewTask($event)"
+      (updateTaskEvent)="updateTask($event)"
+      (deleteTaskEvent)="deleteTask()"
     />
   }
 </main>

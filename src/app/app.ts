@@ -42,10 +42,31 @@ export class App {
     this.showModal = true;
     this.mode = "new";
   }
+  
+  taskToEdit: TaskInterface | undefined;
+
   showEditTaskModal(task: TaskInterface) {
     this.showModal = true;
     this.mode = "edit";
+    this.taskToEdit = task;
     this.currTaskTitle = task.title;
     this.currTaskDescription = task.description;
   }
+
+
+  addNewTask(task: TaskInterface) { this.todoList.push(task); }
+  updateTask(task: TaskInterface) {
+    const updateList = (list: TaskInterface[]) => 
+      list.map(oldTask => oldTask === this.taskToEdit ? {...task} : oldTask);
+    
+    this.todoList = updateList(this.todoList);
+    this.inProgressList = updateList(this.inProgressList);
+    this.doneList = updateList(this.doneList);
+  }
+  deleteTask() {
+    this.todoList = this.todoList.filter(oldTask => oldTask !== this.taskToEdit);
+    this.inProgressList = this.inProgressList.filter(oldTask => oldTask !== this.taskToEdit);
+    this.doneList = this.doneList.filter(oldTask => oldTask !== this.taskToEdit);
+  }
+
 }

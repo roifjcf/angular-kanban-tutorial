@@ -36,11 +36,11 @@
   <div class="button-group">
     @if (mode() === "new") {
       <button (click)="closeModal()">Cancel</button>
-      <button>Add</button>
+      <button (click)="addNewTask()">Add</button>
     } @else if (mode() === "edit") {
-      <button>Delete</button>
+      <button (click)="deleteTask()">Delete</button>
       <button (click)="closeModal()">Cancel</button>
-      <button>Confirm</button>
+      <button (click)="updateTask()">Confirm</button>
     }
   </div>
 

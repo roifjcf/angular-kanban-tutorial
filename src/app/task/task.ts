@@ -13,9 +13,9 @@ export class Task {
   task = input<TaskInterface>();
   showEditTaskModalEvent = output<TaskInterface>();
   showEditTaskModal() {
-    this.showEditTaskModalEvent.emit({
-      title: this.task()?.title ?? "",
-      description: this.task()?.description ?? "",
-    });
+    const currTask = this.task();
+    if (currTask) {
+      this.showEditTaskModalEvent.emit(currTask);
+    }
   }
 }
