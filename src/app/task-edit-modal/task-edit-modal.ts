@@ -36,6 +36,7 @@ export class TaskEditModal {
   addNewTaskEvent = output<TaskInterface>();
   addNewTask() {
     this.addNewTaskEvent.emit({
+      "id": this.currTask()?.id,
       "title": this.newTaskTitle,
       "description": this.newTaskDescription,
     });
@@ -45,6 +46,7 @@ export class TaskEditModal {
   updateTaskEvent = output<TaskInterface>();
   updateTask() {
     this.updateTaskEvent.emit({
+      "id": this.currTask()?.id,
       "title": this.currTaskTitle,
       "description": this.currTaskDescription,
     });

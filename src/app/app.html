@@ -10,11 +10,11 @@
     <div>
       <h2>Todo</h2>
       <app-task-group
-        [taskList]="todoList"
+        [taskList]="todoList()"
         (showEditTaskModalEvent)="showEditTaskModal($event)"
         cdkDropList
         #cdkTodoList="cdkDropList"
-        [cdkDropListData]="todoList"
+        [cdkDropListData]="todoList()"
         [cdkDropListConnectedTo]="[cdkInProgressList, cdkDoneList]"
         (cdkDropListDropped)="drop($event)"
       />
@@ -22,11 +22,11 @@
     <div>
       <h2>In Progress</h2>
       <app-task-group
-        [taskList]="inProgressList"
+        [taskList]="inProgressList()"
         (showEditTaskModalEvent)="showEditTaskModal($event)"
         cdkDropList
         #cdkInProgressList="cdkDropList"
-        [cdkDropListData]="inProgressList"
+        [cdkDropListData]="inProgressList()"
         [cdkDropListConnectedTo]="[cdkTodoList, cdkDoneList]"
         (cdkDropListDropped)="drop($event)"
         />
@@ -34,11 +34,11 @@
     <div>
       <h2>Done</h2>
       <app-task-group
-        [taskList]="doneList"
+        [taskList]="doneList()"
         (showEditTaskModalEvent)="showEditTaskModal($event)"
         cdkDropList
         #cdkDoneList="cdkDropList"
-        [cdkDropListData]="doneList"
+        [cdkDropListData]="doneList()"
         [cdkDropListConnectedTo]="[cdkTodoList, cdkInProgressList]"
         (cdkDropListDropped)="drop($event)"
       />
@@ -49,7 +49,7 @@
   @if (showModal) {
     <app-task-edit-modal
       [mode]="mode"
-      [currTask]="{title: currTaskTitle, description: currTaskDescription}"
+      [currTask]="taskToEdit"
       (closeModalEvent)="closeModal()"
       (addNewTaskEvent)="addNewTask($event)"
       (updateTaskEvent)="updateTask($event)"

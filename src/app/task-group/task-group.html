@@ -1,5 +1,5 @@
 <div class="taskgroup-container">
-  @for (task of taskList(); track task) {
+  @for (task of taskList(); track task.id) {
     <app-task
       [task]="task"
       (showEditTaskModalEvent)="showEditTaskModal($event)"
