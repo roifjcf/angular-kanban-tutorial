@@ -14,3 +14,7 @@ nav {
   color: #fff;
   background-color: #000;
 }
+
+/* Drag and drop CDK */
+.cdk-drag-animating { transition: transform 250ms; }
+.cdk-drag-placeholder { opacity: 0; }

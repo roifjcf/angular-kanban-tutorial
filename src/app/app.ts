@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { TaskInterface, TaskModalType } from '../type';
 import { TaskGroup } from './task-group/task-group';
 import { TaskEditModal } from './task-edit-modal/task-edit-modal';
+import { CdkDragDrop, moveItemInArray, transferArrayItem, CdkDropList } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { TaskEditModal } from './task-edit-modal/task-edit-modal';
     RouterOutlet,
     TaskGroup,
     TaskEditModal,
+    CdkDropList
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
@@ -67,6 +69,20 @@ export class App {
     this.todoList = this.todoList.filter(oldTask => oldTask !== this.taskToEdit);
     this.inProgressList = this.inProgressList.filter(oldTask => oldTask !== this.taskToEdit);
     this.doneList = this.doneList.filter(oldTask => oldTask !== this.taskToEdit);
+  }
+
+  drop(event: CdkDragDrop<TaskInterface[]>) {
+    // runs when the drop event finished
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
   }
 
 }
