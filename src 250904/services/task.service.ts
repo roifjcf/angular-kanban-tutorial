@@ -48,7 +48,7 @@ export class TaskService {
     return deleteDoc(ref);
   }
 
-  // task.service.ts
+  /** Moves a task to another collection */
   async moveTask(task: TaskInterface, from: string, to: string) {
     if (!task.id) return;
     // delete from old collection
