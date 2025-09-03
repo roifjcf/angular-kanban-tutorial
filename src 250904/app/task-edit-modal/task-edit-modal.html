@@ -1,0 +1,47 @@
+<div class="taskeditmodal-container">
+  <div class="fields">
+    <label for="taskTitle">
+      <p>Title</p>
+      @if (mode() === "new") {
+        <input
+          id="taskTitle"
+          type="text"
+          [(ngModel)]="newTaskTitle"
+        />} @else if (mode() === "edit") {
+        <input
+          id="taskTitle"
+          type="text"
+          [(ngModel)]="currTaskTitle"
+        />
+      }
+    </label>
+    <label for="taskDescription">
+      <p>Description</p>
+      @if (mode() === "new") {
+        <input
+          id="taskDescription"
+          type="text"
+          [(ngModel)]="newTaskDescription"
+        />
+      } @else if (mode() === "edit") {
+        <input
+          id="taskDescription"
+          type="text"
+          [(ngModel)]="currTaskDescription"
+        />
+      }
+    </label>
+  </div>
+
+  <div class="button-group">
+    @if (mode() === "new") {
+      <button (click)="closeModal()">Cancel</button>
+      <button (click)="addNewTask()">Add</button>
+    } @else if (mode() === "edit") {
+      <button (click)="deleteTask()">Delete</button>
+      <button (click)="closeModal()">Cancel</button>
+      <button (click)="updateTask()">Confirm</button>
+    }
+  </div>
+
+</div>

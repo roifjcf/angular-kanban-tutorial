@@ -1,0 +1,12 @@
+.app-task-groups {
+  gap: 24px;
+  margin-top: 24px;
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.app-task-groups > div {
+  width: 100%;
+}

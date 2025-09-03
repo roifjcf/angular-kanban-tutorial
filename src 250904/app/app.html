@@ -1,0 +1,61 @@
+<nav>
+  <p>Angular kanban tutorial</p>
+  <button (click)="showNewTaskModal()">
+    + New task
+  </button>
+</nav>
+
+<main>
+  <div class="app-task-groups">
+    <div>
+      <h2>Todo</h2>
+      <app-task-group
+        [taskList]="todoList()"
+        (showEditTaskModalEvent)="showEditTaskModal($event)"
+        cdkDropList
+        #cdkTodoList="cdkDropList"
+        [cdkDropListData]="todoList()"
+        [cdkDropListConnectedTo]="[cdkInProgressList, cdkDoneList]"
+        (cdkDropListDropped)="drop($event)"
+      />
+    </div>
+    <div>
+      <h2>In Progress</h2>
+      <app-task-group
+        [taskList]="inProgressList()"
+        (showEditTaskModalEvent)="showEditTaskModal($event)"
+        cdkDropList
+        #cdkInProgressList="cdkDropList"
+        [cdkDropListData]="inProgressList()"
+        [cdkDropListConnectedTo]="[cdkTodoList, cdkDoneList]"
+        (cdkDropListDropped)="drop($event)"
+        />
+    </div>
+    <div>
+      <h2>Done</h2>
+      <app-task-group
+        [taskList]="doneList()"
+        (showEditTaskModalEvent)="showEditTaskModal($event)"
+        cdkDropList
+        #cdkDoneList="cdkDropList"
+        [cdkDropListData]="doneList()"
+        [cdkDropListConnectedTo]="[cdkTodoList, cdkInProgressList]"
+        (cdkDropListDropped)="drop($event)"
+      />
+    </div>
+  </div>
+
+  <!-- Modal -->
+  @if (showModal) {
+    <app-task-edit-modal
+      [mode]="mode"
+      [currTask]="taskToEdit"
+      (closeModalEvent)="closeModal()"
+      (addNewTaskEvent)="addNewTask($event)"
+      (updateTaskEvent)="updateTask($event)"
+      (deleteTaskEvent)="deleteTask()"
+    />
+  }
+</main>
+
+<router-outlet />
